@@ -118,6 +118,9 @@ public class AIBrain {
         if (moveList.isEmpty() || randomness / r.nextInt(100) > 1) {
             return getRandomMove();
         } else {
+            var rep = lookForRepetition(4, moveList);
+            if (rep != null)
+                return rep;
             return counterMove(moveList.get(r.nextInt(moveList.size())));
         }
     }
