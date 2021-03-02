@@ -1,30 +1,27 @@
-import BE.AIBrain;
-import BE.ENUM.Move;
+package GUI;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 public class Main extends Application {
 
     private static Main instance;
-
     private Stage activeStage;
     private Stage primaryStage;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        instance = this;
         Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXML/MainMenu.fxml"));
         primaryStage.setTitle("Rock Paper Scissor");
         primaryStage.setScene(new Scene(root));
 
         this.primaryStage = primaryStage;
         activeStage = primaryStage;
+
         primaryStage.show();
     }
 
