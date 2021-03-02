@@ -110,7 +110,7 @@ public class AIBrain {
     /**
      * If the list of opponents moves is empty it picks a random move
      * otherwise it picks a random move to counter
-     * If a specific move often is played that move has a higher change of getting countered, since that move will be more frequent in the list
+     * If a specific move is played often that move has a higher change of getting countered, since that move will be more frequent in the list
      *
      * @return a countermove
      */
