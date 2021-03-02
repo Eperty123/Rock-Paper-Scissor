@@ -1,4 +1,4 @@
-package BE;
+package BE.ENUM;
 
 public enum Move {
     Rock,
