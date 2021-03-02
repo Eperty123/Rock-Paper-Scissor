@@ -18,7 +18,7 @@ public class AIBrain {
     double randomness = 0;
 
     /**
-     * A list of moves
+     * A list of the opponents moves
      */
     List<Move> moveList = new ArrayList<>();
 
@@ -33,6 +33,7 @@ public class AIBrain {
     /**
      * Creates a brain with an empty list of moves
      * and a given randomness
+     *
      * @param randomness the randomness percentage
      */
     public AIBrain(double randomness) {
@@ -44,7 +45,7 @@ public class AIBrain {
      * And a given randomness percentage
      *
      * @param randomness the randomness percentage
-     * @param moveList the list of moves
+     * @param moveList A list of the opponents moves
      */
     public AIBrain(List<Move> moveList, double randomness) {
         this.moveList = moveList;
@@ -79,7 +80,7 @@ public class AIBrain {
     }
 
     /**
-     * Sets the list of moves in the Brain
+     * Sets the list of the opponents moves in the Brain
      *
      * @param moveList the moves
      */
@@ -107,7 +108,7 @@ public class AIBrain {
     }
 
     /**
-     * If the list of moves is empty it picks a random move
+     * If the list of opponents moves is empty it picks a random move
      * otherwise it picks a random move to counter
      * If a specific move often is played that move has a higher change of getting countered, since that move will be more frequent in the list
      *
@@ -117,6 +118,9 @@ public class AIBrain {
         if (moveList.isEmpty() || randomness / r.nextInt(100) > 1) {
             return getRandomMove();
         } else {
+            var rep = lookForRepetition(4, moveList);
+            if (rep != null)
+                return rep;
             return counterMove(moveList.get(r.nextInt(moveList.size())));
         }
     }
@@ -126,7 +130,7 @@ public class AIBrain {
      * otherwise it picks a random move to counter
      * If a specific move often is played that move has a higher change of getting countered, since that move will be more frequent in the list
      *
-     * @param moveList the list of moves
+     * @param moveList the list of the opponents moves
      * @return a countermove
      */
     public Move getOptMove(List<Move> moveList) {
@@ -134,12 +138,16 @@ public class AIBrain {
         if (moveList.isEmpty() || randomness / r.nextInt(100) > 1) {
             return getRandomMove();
         } else {
+            var rep = lookForRepetition(4, moveList);
+            if (rep != null)
+                return rep;
             return counterMove(moveList.get(r.nextInt(moveList.size())));
         }
     }
 
     /**
      * Gets the counter to a move
+     *
      * @param moveToCounter the move to counter
      * @return A move that beats the moveToCounter
      */
@@ -150,5 +158,28 @@ public class AIBrain {
             return Move.Rock;
         else
             return Move.Scissor;
+    }
+
+    /**
+     * Looks for repetitions in the moveList
+     *
+     * @param minSize  The minimal size of moveList for it to look for repetitions
+     * @param moveList A list of the opponents moves
+     * @return A counter move or null if no repetitions
+     */
+    public Move lookForRepetition(int minSize, List<Move> moveList) {
+        if (moveList.size() >= minSize) {
+            //Shifts the end point
+            for (int i = minSize / 2; i < moveList.size() / 2; i++) {
+                //Shifts the starting point
+                for (int j = 0; j < i; j++) {
+                    //Checks for matches
+                    if (moveList.subList(j, i).equals(moveList.subList(i + j, 2 * i))) {
+                        return counterMove(moveList.get(j));
+                    }
+                }
+            }
+        }
+        return null;
     }
 }
