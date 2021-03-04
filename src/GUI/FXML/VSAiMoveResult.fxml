@@ -43,14 +43,14 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <ImageView fx:id="playerAvatarImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="playerAvatarImage" fitHeight="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Pictures/avatar/player.png" />
                                  </image>
                               </ImageView>
                            </children>
                            <padding>
-                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                              <Insets left="8.0" top="8.0" />
                            </padding>
                         </HBox>
                      </right>
@@ -82,7 +82,7 @@
                      <left>
                         <HBox BorderPane.alignment="CENTER">
                            <children>
-                              <ImageView fx:id="aiAvatarImage" fitHeight="150.0" fitWidth="200.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="aiAvatarImage" fitHeight="200.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Pictures/avatar/ai.png" />
                                  </image>
@@ -100,7 +100,7 @@
                               </Label>
                            </children>
                            <padding>
-                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                              <Insets bottom="8.0" right="8.0" />
                            </padding>
                         </HBox>
                      </left>
