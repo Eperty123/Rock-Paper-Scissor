@@ -49,7 +49,10 @@ public class PlayerMoveSelectionControlller implements Initializable {
      */
     private void seeResult() {
         try {
-            main.changeStage("/GUI/FXML/VSAiMoveResult.fxml", "Move Result");
+            int roundNumber = gameManager.getCurrentRoundNumber();
+
+            var correctTitle = roundNumber > 0 ? String.format("Move Result - round: %d", roundNumber) : "Move Result";
+            main.changeStage("/GUI/FXML/VSAiMoveResult.fxml", correctTitle);
         } catch (Exception e) {
             e.printStackTrace();
         }

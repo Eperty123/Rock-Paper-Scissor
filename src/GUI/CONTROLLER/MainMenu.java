@@ -31,7 +31,6 @@ public class MainMenu implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        setupPlayers();
         setupButtons();
     }
 
@@ -74,9 +73,7 @@ public class MainMenu implements Initializable {
         try {
             startGame();
 
-            int roundNumber = 0;
-            if (gameManager.getCurrentRound() != null)
-                roundNumber = gameManager.getCurrentRound().getRoundNumber();
+            int roundNumber = gameManager.getCurrentRoundNumber();
 
             var correctTitle = roundNumber > 0 ? String.format("Pick Your Move - round: %d", roundNumber) : "Pick Your Move";
             main.changeStage("/GUI/FXML/PlayerMoveSelection.fxml", correctTitle);
@@ -100,6 +97,9 @@ public class MainMenu implements Initializable {
      * Start the game.
      */
     private void startGame() {
-        gameManager.start(ai, player);
+        if (!gameManager.isGameStarted()) {
+            setupPlayers();
+            gameManager.start(ai, player);
+        }
     }
 }

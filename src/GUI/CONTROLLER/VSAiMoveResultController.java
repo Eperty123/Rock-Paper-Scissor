@@ -70,9 +70,7 @@ public class VSAiMoveResultController implements Initializable {
         nextRoundBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, (x) -> {
             if (x.getButton() == MouseButton.PRIMARY) {
                 try {
-                    int roundNumber = 0;
-                    if (gameManager.getCurrentRound() != null)
-                        roundNumber = gameManager.getCurrentRound().getRoundNumber();
+                    int roundNumber = gameManager.getCurrentRoundNumber();
 
                     var correctTitle = roundNumber > 0 ? String.format("Pick Your Move - round: %d", roundNumber) : "Pick Your Move";
                     main.changeStage("/GUI/FXML/PlayerMoveSelection.fxml", correctTitle);
@@ -85,6 +83,7 @@ public class VSAiMoveResultController implements Initializable {
         mainMenuBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, (x) -> {
             if (x.getButton() == MouseButton.PRIMARY) {
                 try {
+                    main.getGameManager().reset();
                     main.changeStage("/GUI/FXML/MainMenu.fxml", "Main Menu");
                 } catch (Exception e) {
                     e.printStackTrace();

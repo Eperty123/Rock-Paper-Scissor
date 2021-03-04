@@ -19,6 +19,9 @@ public class GameManager {
     private IPlayer player;
     private static GameManager instance;
     private Result currentRound;
+    private int currentRoundNumber;
+
+    private boolean gameStarted;
 
     public static final String avatarPath = "/GUI/Pictures/avatar/";
     public static final String movePath = "/GUI/Pictures/moves/";
@@ -35,7 +38,6 @@ public class GameManager {
      * @param ai
      */
     public GameManager(IPlayer player, IPlayer ai) {
-        initialize();
         setAi(ai);
         setPlayer(player);
     }
@@ -56,7 +58,7 @@ public class GameManager {
         ai.setChosenMove(botMove);
 
         Result result;
-        int roundNumber = gameState.getRoundNumber();
+        int roundNumber = gameState.getMoveResults().size();
 
         //Rules
         if (humanMove == botMove)
@@ -68,8 +70,10 @@ public class GameManager {
         } else {
             result = new Result(ai, player, ResultType.Win, botMove, humanMove, roundNumber);
         }
-        gameState.setRoundNumber(++roundNumber);
+
+        currentRoundNumber = roundNumber++;
         gameState.getMoveResults().add(result);
+        gameState.setRoundNumber(currentRoundNumber);
 
         currentRound = result;
         return result;
@@ -82,6 +86,11 @@ public class GameManager {
     public Result getCurrentRound() {
         return currentRound;
     }
+
+    public int getCurrentRoundNumber() {
+        return currentRoundNumber;
+    }
+
 
     public void setGameState(IGameState gameState) {
         this.gameState = gameState;
@@ -104,14 +113,14 @@ public class GameManager {
     }
 
     public void start(IPlayer bot, IPlayer human) {
-        initialize();
         setAi(bot);
         setPlayer(human);
+        setGameStarted(true);
     }
-
 
     /**
      * Get the proper path to the move specified.
+     *
      * @param move The chosen move.
      * @return Returns the image path to that move.
      */
@@ -126,8 +135,39 @@ public class GameManager {
     }
 
     /**
+     * Has the game started?
+     *
+     * @return
+     */
+    public boolean isGameStarted() {
+        return gameStarted;
+    }
+
+    /**
+     * Set the game start state.
+     *
+     * @param gameStarted
+     */
+    public void setGameStarted(boolean gameStarted) {
+        this.gameStarted = gameStarted;
+    }
+
+    /**
+     * Reset the game.
+     */
+    public void reset() {
+        initialize();
+        setAi(null);
+        setPlayer(null);
+        currentRoundNumber = 0;
+        currentRound = null;
+        setGameStarted(false);
+    }
+
+    /**
      * Get the singleton instance.
-     * @return  The active instance.
+     *
+     * @return The active instance.
      */
     public static GameManager getInstance() {
         if (instance == null) instance = new GameManager();
