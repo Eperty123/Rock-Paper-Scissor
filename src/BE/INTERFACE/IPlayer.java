@@ -4,6 +4,8 @@ package BE.INTERFACE;
 import BE.ENUM.MoveType;
 import BE.ENUM.PlayerType;
 
+import java.util.List;
+
 
 /**
  * Determines the player and its strategy
@@ -55,4 +57,11 @@ public interface IPlayer {
      * @return a move
      */
     public MoveType doMove(IGameState state);
+
+
+    /**
+     * Gets the players moves
+     * @return
+     */
+    public List<MoveType> getMoves();
 }
