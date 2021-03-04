@@ -1,6 +1,6 @@
 package BE.ENUM;
 
-public enum Move {
+public enum MoveType {
     Rock,
     Paper,
     Scissor

@@ -1,11 +1,17 @@
 package GUI.CONTROLLER;
 
+import BE.ENUM.PlayerType;
+import BLL.GAME.GameManager;
+import BE.INTERFACE.IPlayer;
+import BE.PLAYER.Ai;
+import BE.PLAYER.Player;
 import GUI.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -18,25 +24,82 @@ public class MainMenu implements Initializable {
     Button vsComputerBtn;
 
     Main main = Main.getInstance();
+    GameManager gameManager = main.getGameManager();
+
+    IPlayer player;
+    IPlayer ai;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        setupButtons();
     }
 
-    @FXML
+    /**
+     * Start playing against another player.
+     */
     private void startVsPlayer() {
         System.out.println("TODO: Start vs player scene.");
     }
 
-    @FXML
-    private void startVsComputer() throws IOException {
+    /**
+     * Setup the buttons.
+     */
+    private void setupButtons() {
+        vsComputerBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, (x) -> {
+            if (x.getButton() == MouseButton.PRIMARY) {
+                try {
+                    startVsComputer();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        vsPlayerBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, (x) -> {
+            if (x.getButton() == MouseButton.PRIMARY) {
+                try {
+                    startVsPlayer();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    /**
+     * Start playing against the computer.
+     */
+    private void startVsComputer() {
         try {
-            //main.changeStage("/GUI/FXML/VSAiMoveResult.fxml", "VS Ai");
-            main.changeStage("/GUI/FXML/PlayerMoveSelection.fxml", "Pick Your Move");
+            startGame();
+
+            int roundNumber = gameManager.getCurrentRoundNumber();
+
+            var correctTitle = roundNumber > 0 ? String.format("Pick Your Move - round: %d", roundNumber) : "Pick Your Move";
+            main.changeStage("/GUI/FXML/PlayerMoveSelection.fxml", correctTitle);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("TODO: Start vs computer scene.");
+    }
+
+    /**
+     * Setup the players.
+     */
+    private void setupPlayers() {
+        ai = new Ai("Sophie (Ai)", "ai.png");
+        player = new Player("Joker (Player)", PlayerType.Player, "player.png");
+
+        gameManager.setAi(ai);
+        gameManager.setPlayer(player);
+    }
+
+    /**
+     * Start the game.
+     */
+    private void startGame() {
+        if (!gameManager.isGameStarted()) {
+            setupPlayers();
+            gameManager.start(ai, player);
+        }
     }
 }

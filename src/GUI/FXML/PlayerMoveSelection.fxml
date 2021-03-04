@@ -11,18 +11,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CONTROLLER.PlayerMoveSelectionControlller">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CONTROLLER.PlayerMoveSelectionControlller">
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <bottom>
             <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label text="Player" textAlignment="CENTER">
+                  <Label fx:id="playerNameLbl" text="Player" textAlignment="CENTER">
                      <font>
-                        <Font name="System Bold" size="24.0" />
+                        <Font name="System Bold" size="36.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="avatarImageView" fitHeight="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Pictures/avatar/player.png" />
                      </image>
@@ -40,17 +40,17 @@
          <center>
             <VBox alignment="CENTER" prefHeight="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="rockButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#choose" prefWidth="220.0" text="Rock" textAlignment="CENTER" VBox.vgrow="SOMETIMES">
+                  <Button fx:id="rockButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="220.0" text="Rock" textAlignment="CENTER" VBox.vgrow="SOMETIMES">
                      <VBox.margin>
                         <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="paperButton" alignment="CENTER" contentDisplay="CENTER" layoutX="283.0" layoutY="85.0" mnemonicParsing="false" onAction="#choose" prefWidth="220.0" text="Paper" textAlignment="CENTER" VBox.vgrow="SOMETIMES">
+                  <Button fx:id="paperButton" alignment="CENTER" contentDisplay="CENTER" layoutX="283.0" layoutY="85.0" mnemonicParsing="false" prefWidth="220.0" text="Paper" textAlignment="CENTER" VBox.vgrow="SOMETIMES">
                      <VBox.margin>
                         <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="scissorButton" alignment="CENTER" contentDisplay="CENTER" layoutX="283.0" layoutY="101.0" mnemonicParsing="false" onAction="#choose" prefWidth="220.0" text="Scissor" textAlignment="CENTER" VBox.vgrow="SOMETIMES">
+                  <Button fx:id="scissorButton" alignment="CENTER" contentDisplay="CENTER" layoutX="283.0" layoutY="101.0" mnemonicParsing="false" prefWidth="220.0" text="Scissor" textAlignment="CENTER" VBox.vgrow="SOMETIMES">
                      <VBox.margin>
                         <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                      </VBox.margin>
