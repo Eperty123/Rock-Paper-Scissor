@@ -3,30 +3,21 @@ package BE.PLAYER;
 import BE.ENUM.MoveType;
 import BE.INTERFACE.IGameState;
 import BE.GAME.Result;
+import BE.INTERFACE.IPlayer;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Ai extends Player {
     private AIBrain brain;
 
-    private void initialize() {
-        brain = new AIBrain();
-        var moves = new ArrayList<MoveType>();
-        moves.add(MoveType.Rock);
-        moves.add(MoveType.Paper);
-        moves.add(MoveType.Scissor);
-        brain.setMoveList(moves);
-    }
-
     public Ai() {
         super();
-        initialize();
     }
 
-    public Ai(String name, String avatarPath) {
-        initialize();
+    public Ai(String name, String avatarPath, IPlayer opponent) {
         setName(name);
         setAvatarPath(avatarPath);
+        brain = new AIBrain(opponent.getMoves(),0);
     }
 
     public AIBrain getBrain() {
@@ -35,10 +26,6 @@ public class Ai extends Player {
 
     @Override
     public MoveType doMove(IGameState state) {
-
-        ArrayList<Result> moveResults = (ArrayList<Result>) state.getMoveResults();
-
-        // Make the ai decide which move it does. DP please elaborate how your AIBrain class works.
         return getBrain().getOptMove();
     }
 }

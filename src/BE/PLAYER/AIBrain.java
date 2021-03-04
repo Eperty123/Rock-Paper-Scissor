@@ -2,9 +2,7 @@ package BE.PLAYER;
 
 import BE.ENUM.MoveType;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class AIBrain {
     /**
@@ -45,7 +43,7 @@ public class AIBrain {
      * And a given randomness percentage
      *
      * @param randomness the randomness percentage
-     * @param moveList A list of the opponents moves
+     * @param moveList   A list of the opponents moves
      */
     public AIBrain(List<MoveType> moveList, double randomness) {
         this.moveList = moveList;
@@ -169,21 +167,20 @@ public class AIBrain {
      * @param moveList A list of the opponents moves
      * @return A counter move or null if no repetitions
      */
-    public Move lookForRepetition(int minSize, List<Move> moveList) throws Exception {
+    public MoveType lookForRepetition(int minSize, List<MoveType> moveList) throws Exception {
         if (moveList.size() >= minSize) {
-            //Shifts the end point
-            for (int i = minSize / 2; i < moveList.size() / 2; i++) {
-                //Shifts the starting point
-                for (int j = 0; j < i; j++) {
-                    //Checks for matches
-                    if (moveList.subList(j, i).equals(moveList.subList(i + j, 2 * i))) {
-                        return counterMove(moveList.get(j));
-                    }
+            // define a new list to preserve order in the original list
+            var movesList = new ArrayList<>(moveList);
+            Collections.reverse(movesList);
+            //checks for repeated patterns in the list of moves
+            for (int i = movesList.size() / 2; i >= minSize / 2; i--) {
+                if (movesList.subList(0, i).equals(movesList.subList(i, 2 * i))) {
+                    System.out.println("countered rep: " + movesList.get(0));
+                    return counterMove(movesList.get(0));
                 }
             }
             throw new Exception("No repetition found");
-        }
-        else
+        } else
             throw new Exception("moveList too small");
     }
 }

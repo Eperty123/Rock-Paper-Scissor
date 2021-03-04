@@ -86,8 +86,8 @@ public class MainMenu implements Initializable {
      * Setup the players.
      */
     private void setupPlayers() {
-        ai = new Ai("Sophie (Ai)", "ai.png");
         player = new Player("Joker (Player)", PlayerType.Player, "player.png");
+        ai = new Ai("Sophie (Ai)", "ai.png",player);
 
         gameManager.setAi(ai);
         gameManager.setPlayer(player);

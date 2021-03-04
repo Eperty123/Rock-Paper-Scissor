@@ -3,11 +3,10 @@ package BE.PLAYER;
 import BE.ENUM.MoveType;
 import BLL.GAME.GameManager;
 import BE.INTERFACE.IGameState;
-import BE.GAME.Result;
 import BE.ENUM.PlayerType;
 import BE.INTERFACE.IPlayer;
-
 import java.util.ArrayList;
+import java.util.List;
 
 public class Player implements IPlayer {
 
@@ -15,6 +14,7 @@ public class Player implements IPlayer {
     private PlayerType type;
     private String avatarPath;
     private MoveType chosenMove;
+    private List<MoveType> moves = new ArrayList<>();
 
     public Player() {
 
@@ -44,15 +44,11 @@ public class Player implements IPlayer {
     /**
      * Decides the next move
      *
-     * @param state contains game state, with previous results
      * @return Next move
      */
     @Override
-    public MoveType doMove(IGameState state) {
-
-        ArrayList<Result> moveResults = (ArrayList<Result>) state.getMoveResults();
-
-        return MoveType.Rock;
+    public MoveType doMove(IGameState gameState) {
+        return chosenMove;
     }
 
     @Override
@@ -73,6 +69,12 @@ public class Player implements IPlayer {
     @Override
     public void setChosenMove(MoveType chosenMove) {
         this.chosenMove = chosenMove;
+        moves.add(chosenMove);
+    }
+
+    @Override
+    public List<MoveType> getMoves() {
+        return moves;
     }
 
     public void setName(String name) {
