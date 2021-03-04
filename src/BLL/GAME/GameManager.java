@@ -116,6 +116,7 @@ public class GameManager {
         setAi(bot);
         setPlayer(human);
         setGameStarted(true);
+        currentRoundNumber = 1;
     }
 
     /**
