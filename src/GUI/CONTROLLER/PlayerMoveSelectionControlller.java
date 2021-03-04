@@ -6,6 +6,7 @@ import GUI.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -23,6 +24,8 @@ public class PlayerMoveSelectionControlller implements Initializable {
     Button scissorButton;
     @FXML
     ImageView avatarImageView;
+    @FXML
+    Label playerNameLbl;
 
     Main main = Main.getInstance();
     GameManager gameManager = main.getGameManager();
@@ -38,6 +41,7 @@ public class PlayerMoveSelectionControlller implements Initializable {
      */
     private void setupPlayer() {
         avatarImageView.setImage(new Image(gameManager.getPlayer().getAvatarPath()));
+        playerNameLbl.setText(gameManager.getPlayer().getPlayerName());
     }
 
     /**
