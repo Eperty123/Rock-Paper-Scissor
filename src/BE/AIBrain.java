@@ -118,10 +118,11 @@ public class AIBrain {
         if (moveList.isEmpty() || randomness / r.nextInt(100) > 1) {
             return getRandomMove();
         } else {
-            var rep = lookForRepetition(4, moveList);
-            if (rep != null)
-                return rep;
-            return counterMove(moveList.get(r.nextInt(moveList.size())));
+            try {
+                return lookForRepetition(4, moveList);
+            } catch (Exception e) {
+                return counterMove(moveList.get(r.nextInt(moveList.size())));
+            }
         }
     }
 
@@ -138,10 +139,11 @@ public class AIBrain {
         if (moveList.isEmpty() || randomness / r.nextInt(100) > 1) {
             return getRandomMove();
         } else {
-            var rep = lookForRepetition(4, moveList);
-            if (rep != null)
-                return rep;
-            return counterMove(moveList.get(r.nextInt(moveList.size())));
+            try {
+                return lookForRepetition(4, moveList);
+            } catch (Exception e) {
+                return counterMove(moveList.get(r.nextInt(moveList.size())));
+            }
         }
     }
 
@@ -167,7 +169,7 @@ public class AIBrain {
      * @param moveList A list of the opponents moves
      * @return A counter move or null if no repetitions
      */
-    public Move lookForRepetition(int minSize, List<Move> moveList) {
+    public Move lookForRepetition(int minSize, List<Move> moveList) throws Exception {
         if (moveList.size() >= minSize) {
             //Shifts the end point
             for (int i = minSize / 2; i < moveList.size() / 2; i++) {
@@ -179,7 +181,9 @@ public class AIBrain {
                     }
                 }
             }
+            throw new Exception("No repetition found");
         }
-        return null;
+        else
+            throw new Exception("moveList too small");
     }
 }
