@@ -1,8 +1,7 @@
 package BE.INTERFACE;
 //Imports
 
-import BE.ENUM.Move;
-import BE.GAME.IGameState;
+import BE.ENUM.MoveType;
 import BE.ENUM.PlayerType;
 
 
@@ -41,13 +40,13 @@ public interface IPlayer {
      * Get the chosen move
      * @return
      */
-    public Move getChosenMove();
+    public MoveType getChosenMove();
 
     /**
      * Set the current move
      * @param chosenMove
      */
-    public void setChosenMove(Move chosenMove);
+    public void setChosenMove(MoveType chosenMove);
 
     /**
      * Makes a move
@@ -55,5 +54,5 @@ public interface IPlayer {
      * @param state
      * @return a move
      */
-    public Move doMove(IGameState state);
+    public MoveType doMove(IGameState state);
 }

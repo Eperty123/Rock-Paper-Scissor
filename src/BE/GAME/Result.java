@@ -1,7 +1,8 @@
 package BE.GAME;
 
 
-import BE.ENUM.Move;
+import BE.ENUM.MoveType;
+import BE.ENUM.ResultType;
 import BE.INTERFACE.IPlayer;
 
 /**
@@ -10,8 +11,8 @@ import BE.INTERFACE.IPlayer;
 public class Result {
 
     private ResultType type;
-    private Move winnerMove;
-    private Move loserMove;
+    private MoveType winnerMove;
+    private MoveType loserMove;
     private IPlayer winnerPlayer;
     private IPlayer loserPlayer;
     private int roundNumber;
@@ -29,7 +30,7 @@ public class Result {
      * @param loserMove
      * @param roundNumber
      */
-    public Result(IPlayer winnerPlayer, IPlayer loserPlayer, ResultType type, Move winnerMove, Move loserMove, int roundNumber) {
+    public Result(IPlayer winnerPlayer, IPlayer loserPlayer, ResultType type, MoveType winnerMove, MoveType loserMove, int roundNumber) {
         this.winnerPlayer = winnerPlayer;
         this.loserPlayer = loserPlayer;
         this.type = type;
@@ -42,11 +43,11 @@ public class Result {
         return type;
     }
 
-    public Move getWinnerMove() {
+    public MoveType getWinnerMove() {
         return winnerMove;
     }
 
-    public Move getLoserMove() {
+    public MoveType getLoserMove() {
         return loserMove;
     }
 
@@ -66,11 +67,11 @@ public class Result {
         this.type = type;
     }
 
-    public void setWinnerMove(Move winnerMove) {
+    public void setWinnerMove(MoveType winnerMove) {
         this.winnerMove = winnerMove;
     }
 
-    public void setLoserMove(Move loserMove) {
+    public void setLoserMove(MoveType loserMove) {
         this.loserMove = loserMove;
     }
 

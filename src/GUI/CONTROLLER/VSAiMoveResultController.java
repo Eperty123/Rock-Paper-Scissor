@@ -1,6 +1,6 @@
 package GUI.CONTROLLER;
 
-import BE.GAME.GameManager;
+import BLL.GAME.GameManager;
 import GUI.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

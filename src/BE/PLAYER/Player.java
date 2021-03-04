@@ -1,8 +1,8 @@
 package BE.PLAYER;
 
-import BE.ENUM.Move;
-import BE.GAME.GameManager;
-import BE.GAME.IGameState;
+import BE.ENUM.MoveType;
+import BLL.GAME.GameManager;
+import BE.INTERFACE.IGameState;
 import BE.GAME.Result;
 import BE.ENUM.PlayerType;
 import BE.INTERFACE.IPlayer;
@@ -14,7 +14,7 @@ public class Player implements IPlayer {
     private String name;
     private PlayerType type;
     private String avatarPath;
-    private Move chosenMove;
+    private MoveType chosenMove;
 
     public Player() {
 
@@ -48,11 +48,11 @@ public class Player implements IPlayer {
      * @return Next move
      */
     @Override
-    public Move doMove(IGameState state) {
+    public MoveType doMove(IGameState state) {
 
         ArrayList<Result> moveResults = (ArrayList<Result>) state.getMoveResults();
 
-        return Move.Rock;
+        return MoveType.Rock;
     }
 
     @Override
@@ -66,12 +66,12 @@ public class Player implements IPlayer {
     }
 
     @Override
-    public Move getChosenMove() {
+    public MoveType getChosenMove() {
         return chosenMove;
     }
 
     @Override
-    public void setChosenMove(Move chosenMove) {
+    public void setChosenMove(MoveType chosenMove) {
         this.chosenMove = chosenMove;
     }
 

@@ -1,4 +1,6 @@
-package BE.GAME;
+package BE.INTERFACE;
+
+import BE.GAME.Result;
 
 import java.util.Collection;
 

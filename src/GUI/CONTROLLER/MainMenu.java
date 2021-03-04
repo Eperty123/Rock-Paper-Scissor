@@ -1,7 +1,7 @@
 package GUI.CONTROLLER;
 
 import BE.ENUM.PlayerType;
-import BE.GAME.GameManager;
+import BLL.GAME.GameManager;
 import BE.INTERFACE.IPlayer;
 import BE.PLAYER.Ai;
 import BE.PLAYER.Player;

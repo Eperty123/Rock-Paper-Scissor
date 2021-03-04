@@ -1,6 +1,6 @@
 package BE.PLAYER;
 
-import BE.ENUM.Move;
+import BE.ENUM.MoveType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ public class AIBrain {
     /**
      * A list of the opponents moves
      */
-    List<Move> moveList = new ArrayList<>();
+    List<MoveType> moveList = new ArrayList<>();
 
     /**
      * Creates a brain with an empty list of moves
@@ -47,7 +47,7 @@ public class AIBrain {
      * @param randomness the randomness percentage
      * @param moveList A list of the opponents moves
      */
-    public AIBrain(List<Move> moveList, double randomness) {
+    public AIBrain(List<MoveType> moveList, double randomness) {
         this.moveList = moveList;
         this.randomness = randomness;
     }
@@ -75,7 +75,7 @@ public class AIBrain {
      *
      * @return a list of moves
      */
-    public List<Move> getMoveList() {
+    public List<MoveType> getMoveList() {
         return moveList;
     }
 
@@ -84,7 +84,7 @@ public class AIBrain {
      *
      * @param moveList the moves
      */
-    public void setMoveList(List<Move> moveList) {
+    public void setMoveList(List<MoveType> moveList) {
         this.moveList = moveList;
     }
 
@@ -93,16 +93,16 @@ public class AIBrain {
      *
      * @return a random move
      */
-    private Move getRandomMove() {
+    private MoveType getRandomMove() {
         switch (r.nextInt(3)) {
             case (1) -> {
-                return Move.Rock;
+                return MoveType.Rock;
             }
             case (2) -> {
-                return Move.Scissor;
+                return MoveType.Scissor;
             }
             default -> {
-                return Move.Paper;
+                return MoveType.Paper;
             }
         }
     }
@@ -114,7 +114,7 @@ public class AIBrain {
      *
      * @return a countermove
      */
-    public Move getOptMove() {
+    public MoveType getOptMove() {
         if (moveList.isEmpty() || randomness / r.nextInt(100) > 1) {
             return getRandomMove();
         } else {
@@ -133,7 +133,7 @@ public class AIBrain {
      * @param moveList the list of the opponents moves
      * @return a countermove
      */
-    public Move getOptMove(List<Move> moveList) {
+    public MoveType getOptMove(List<MoveType> moveList) {
         int random = r.nextInt(3) + 1;
         if (moveList.isEmpty() || randomness / r.nextInt(100) > 1) {
             return getRandomMove();
@@ -151,13 +151,13 @@ public class AIBrain {
      * @param moveToCounter the move to counter
      * @return A move that beats the moveToCounter
      */
-    public Move counterMove(Move moveToCounter) {
-        if (moveToCounter.equals(Move.Rock))
-            return Move.Paper;
-        else if (moveToCounter.equals(Move.Scissor))
-            return Move.Rock;
+    public MoveType counterMove(MoveType moveToCounter) {
+        if (moveToCounter.equals(MoveType.Rock))
+            return MoveType.Paper;
+        else if (moveToCounter.equals(MoveType.Scissor))
+            return MoveType.Rock;
         else
-            return Move.Scissor;
+            return MoveType.Scissor;
     }
 
     /**
@@ -167,7 +167,7 @@ public class AIBrain {
      * @param moveList A list of the opponents moves
      * @return A counter move or null if no repetitions
      */
-    public Move lookForRepetition(int minSize, List<Move> moveList) {
+    public MoveType lookForRepetition(int minSize, List<MoveType> moveList) {
         if (moveList.size() >= minSize) {
             //Shifts the end point
             for (int i = minSize / 2; i < moveList.size() / 2; i++) {

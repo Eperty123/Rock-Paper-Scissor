@@ -1,6 +1,10 @@
-package BE.GAME;
+package BLL.GAME;
 
-import BE.ENUM.Move;
+import BE.ENUM.MoveType;
+import BE.ENUM.ResultType;
+import BE.GAME.GameState;
+import BE.GAME.Result;
+import BE.INTERFACE.IGameState;
 import BE.INTERFACE.IPlayer;
 
 import java.util.ArrayList;
@@ -46,9 +50,9 @@ public class GameManager {
      * @param humanMove
      * @return
      */
-    public Result playRound(Move humanMove) {
+    public Result playRound(MoveType humanMove) {
         player.setChosenMove(humanMove);
-        Move botMove = ai.doMove(gameState);
+        MoveType botMove = ai.doMove(gameState);
         ai.setChosenMove(botMove);
 
         Result result;
@@ -57,9 +61,9 @@ public class GameManager {
         //Rules
         if (humanMove == botMove)
             result = new Result(player, ai, ResultType.Tie, humanMove, botMove, roundNumber);
-        else if ((humanMove == Move.Rock && botMove == Move.Scissor) ||
-                (humanMove == Move.Scissor && botMove == Move.Paper) ||
-                (humanMove == Move.Paper && botMove == Move.Rock)) {
+        else if ((humanMove == MoveType.Rock && botMove == MoveType.Scissor) ||
+                (humanMove == MoveType.Scissor && botMove == MoveType.Paper) ||
+                (humanMove == MoveType.Paper && botMove == MoveType.Rock)) {
             result = new Result(player, ai, ResultType.Win, humanMove, botMove, roundNumber);
         } else {
             result = new Result(ai, player, ResultType.Win, botMove, humanMove, roundNumber);
@@ -111,7 +115,7 @@ public class GameManager {
      * @param move The chosen move.
      * @return Returns the image path to that move.
      */
-    public String getMovePicturePath(Move move) {
+    public String getMovePicturePath(MoveType move) {
         String result = null;
         switch (move) {
             case Rock -> result = "rock.png";

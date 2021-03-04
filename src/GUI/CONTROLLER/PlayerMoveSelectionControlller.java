@@ -1,7 +1,7 @@
 package GUI.CONTROLLER;
 
-import BE.ENUM.Move;
-import BE.GAME.GameManager;
+import BE.ENUM.MoveType;
+import BLL.GAME.GameManager;
 import GUI.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -61,21 +61,21 @@ public class PlayerMoveSelectionControlller implements Initializable {
     private void handleChosenMove() {
         rockButton.addEventHandler(MouseEvent.MOUSE_PRESSED, (x) -> {
             if (x.getButton() == MouseButton.PRIMARY) {
-                gameManager.playRound(Move.Rock);
+                gameManager.playRound(MoveType.Rock);
                 seeResult();
             }
         });
 
         paperButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (x) -> {
             if (x.getButton() == MouseButton.PRIMARY) {
-                gameManager.playRound(Move.Paper);
+                gameManager.playRound(MoveType.Paper);
                 seeResult();
             }
         });
 
         scissorButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (x) -> {
             if (x.getButton() == MouseButton.PRIMARY) {
-                gameManager.playRound(Move.Scissor);
+                gameManager.playRound(MoveType.Scissor);
                 seeResult();
             }
         });

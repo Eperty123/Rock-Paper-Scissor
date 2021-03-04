@@ -1,6 +1,8 @@
 package BE.GAME;
 
 
+import BE.INTERFACE.IGameState;
+
 import java.util.ArrayList;
 import java.util.Collection;
 

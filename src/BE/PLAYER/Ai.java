@@ -1,7 +1,7 @@
 package BE.PLAYER;
 
-import BE.ENUM.Move;
-import BE.GAME.IGameState;
+import BE.ENUM.MoveType;
+import BE.INTERFACE.IGameState;
 import BE.GAME.Result;
 
 import java.util.ArrayList;
@@ -11,10 +11,10 @@ public class Ai extends Player {
 
     private void initialize() {
         brain = new AIBrain();
-        var moves = new ArrayList<Move>();
-        moves.add(Move.Rock);
-        moves.add(Move.Paper);
-        moves.add(Move.Scissor);
+        var moves = new ArrayList<MoveType>();
+        moves.add(MoveType.Rock);
+        moves.add(MoveType.Paper);
+        moves.add(MoveType.Scissor);
         brain.setMoveList(moves);
     }
 
@@ -34,7 +34,7 @@ public class Ai extends Player {
     }
 
     @Override
-    public Move doMove(IGameState state) {
+    public MoveType doMove(IGameState state) {
 
         ArrayList<Result> moveResults = (ArrayList<Result>) state.getMoveResults();
 
