@@ -1,8 +1,8 @@
-package BLL.Game;
+package BE.GAME;
 
 
 import BE.ENUM.Move;
-import BLL.Player.IPlayer;
+import BE.INTERFACE.IPlayer;
 
 /**
  * defining the result of a game
@@ -16,8 +16,12 @@ public class Result {
     private IPlayer loserPlayer;
     private int roundNumber;
 
+    public Result() {
+    }
+
     /**
      * New result with winner, loser + moves and type
+     *
      * @param winnerPlayer
      * @param loserPlayer
      * @param type
@@ -56,5 +60,29 @@ public class Result {
 
     public int getRoundNumber() {
         return roundNumber;
+    }
+
+    public void setType(ResultType type) {
+        this.type = type;
+    }
+
+    public void setWinnerMove(Move winnerMove) {
+        this.winnerMove = winnerMove;
+    }
+
+    public void setLoserMove(Move loserMove) {
+        this.loserMove = loserMove;
+    }
+
+    public void setWinnerPlayer(IPlayer winnerPlayer) {
+        this.winnerPlayer = winnerPlayer;
+    }
+
+    public void setLoserPlayer(IPlayer loserPlayer) {
+        this.loserPlayer = loserPlayer;
+    }
+
+    public void setRoundNumber(int roundNumber) {
+        this.roundNumber = roundNumber;
     }
 }

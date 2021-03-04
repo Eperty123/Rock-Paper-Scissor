@@ -46,7 +46,7 @@
          <bottom>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="vsPlayerBtn" mnemonicParsing="false" onAction="#startVsPlayer" text="Vs Player">
+                  <Button fx:id="vsPlayerBtn" mnemonicParsing="false" text="Vs Player">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -54,7 +54,7 @@
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="vsComputerBtn" layoutX="367.0" layoutY="35.0" mnemonicParsing="false" onAction="#startVsComputer" text="Vs Computer">
+                  <Button fx:id="vsComputerBtn" layoutX="367.0" layoutY="35.0" mnemonicParsing="false" text="Vs Computer">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>

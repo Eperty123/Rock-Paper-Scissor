@@ -1,31 +1,80 @@
 package GUI.CONTROLLER;
 
+import BE.ENUM.Move;
+import BE.GAME.GameManager;
 import GUI.Main;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 
-public class PlayerMoveSelectionControlller {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class PlayerMoveSelectionControlller implements Initializable {
     @FXML
     Button rockButton;
     @FXML
     Button paperButton;
     @FXML
     Button scissorButton;
+    @FXML
+    ImageView avatarImageView;
 
     Main main = Main.getInstance();
+    GameManager gameManager = main.getGameManager();
 
-    @FXML
-    private void choose() {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        setupPlayer();
+        handleChosenMove();
+    }
+
+    /**
+     * Setup the player.
+     */
+    private void setupPlayer() {
+        avatarImageView.setImage(new Image(gameManager.getPlayer().getAvatarPath()));
+    }
+
+    /**
+     * Set the result.
+     */
+    private void seeResult() {
         try {
-            //main.changeStage("/GUI/FXML/VSAiMoveResult.fxml", "VS Ai");
-            handleChosenMove();
             main.changeStage("/GUI/FXML/VSAiMoveResult.fxml", "Move Result");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * Handle the player's chosen element.
+     */
     private void handleChosenMove() {
-        // TODO: Add listener and logic to button click.
+        rockButton.addEventHandler(MouseEvent.MOUSE_PRESSED, (x) -> {
+            if (x.getButton() == MouseButton.PRIMARY) {
+                gameManager.playRound(Move.Rock);
+                seeResult();
+            }
+        });
+
+        paperButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (x) -> {
+            if (x.getButton() == MouseButton.PRIMARY) {
+                gameManager.playRound(Move.Paper);
+                seeResult();
+            }
+        });
+
+        scissorButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (x) -> {
+            if (x.getButton() == MouseButton.PRIMARY) {
+                gameManager.playRound(Move.Scissor);
+                seeResult();
+            }
+        });
     }
+
 }

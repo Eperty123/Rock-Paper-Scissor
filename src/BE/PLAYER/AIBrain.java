@@ -1,4 +1,4 @@
-package BE;
+package BE.PLAYER;
 
 import BE.ENUM.Move;
 

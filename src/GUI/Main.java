@@ -1,5 +1,6 @@
 package GUI;
 
+import BE.GAME.GameManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +12,7 @@ public class Main extends Application {
     private static Main instance;
     private Stage activeStage;
     private Stage primaryStage;
+    private GameManager gameManager = GameManager.getInstance();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -61,7 +63,6 @@ public class Main extends Application {
         return loader.getController();
     }
 
-
     public static void main(String[] args) {
         launch(args);
     }
@@ -69,4 +70,9 @@ public class Main extends Application {
     public static Main getInstance() {
         return instance;
     }
+
+    public GameManager getGameManager() {
+        return gameManager;
+    }
 }
+

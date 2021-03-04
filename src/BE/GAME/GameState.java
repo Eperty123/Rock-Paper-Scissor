@@ -1,4 +1,4 @@
-package BLL.Game;
+package BE.GAME;
 
 
 import java.util.ArrayList;
